@@ -40,10 +40,6 @@ class App extends Component {
                 })
         }
 
-
-// Open the page in a new window, then redirect back to a page that calls our global `oauth2Callback` function.
-//         window.open(githubAuth.token.getUri());
-
         return (
             <div className="App">
                 <header className="App-header">
@@ -51,13 +47,18 @@ class App extends Component {
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
                 <p className="App-intro">
-                    hello
-                    <button onClick={() => <Redirect to="/login" push />}>Login2</button>
-                    <Link to="/login">
+                    <a href={githubAuth.options.authorizationUri+"?client_id="+githubAuth.options.clientId+"&response_type=token&redirect_uri=http://localhost:3000/login"}>
                         <button type="button">
-                            Click Me!
+                            OAuth2 Login
                         </button>
-                    </Link>
+                    </a>
+                </p>
+                <p className="App-intro">
+                    <a href="http://localhost:8081/auth/logout">
+                        <button type="button">
+                            OAuth2 Logout
+                        </button>
+                    </a>
                 </p>
             </div>
         );
